@@ -70,6 +70,8 @@ public:
     void setVideoMemorySize(BString videoMemorySize);
     BString getMouseWarpOverride();
     void setMouseWarpOverride(BString value);
+    BString getGLSLOverride();
+    void setGLSLOverride(BString value);
     BString getWindowsVersion();
     void setWindowsVersion(const BoxedWinVersion& version);    
     BString getLogPath();

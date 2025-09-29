@@ -492,6 +492,22 @@ void BoxedContainer::setMouseWarpOverride(BString value) {
     reg.save();
 }
 
+
+BString BoxedContainer::getGLSLOverride() {
+    BoxedReg reg(this, false);
+    BString value = B("enable");
+
+    reg.readKey("Software\\Wine\\Direct3D", "useGLSL", value);
+    return value;
+}
+
+
+void BoxedContainer::setGLSLOverride(BString value) {
+    BoxedReg reg(this, false);
+    reg.writeKey("Software\\Wine\\Direct3D", "useGLSL", value.c_str());
+    reg.save();
+}
+
 static const char szKey9x[] = "Software\\Microsoft\\Windows\\CurrentVersion";
 static const char szKeyNT[] = "Software\\Microsoft\\Windows NT\\CurrentVersion";
 static const char szKeyProdNT[] = "System\\CurrentControlSet\\Control\\ProductOptions";

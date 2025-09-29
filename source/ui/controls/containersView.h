@@ -54,6 +54,7 @@ private:
 #endif
 
     std::shared_ptr<LayoutComboboxControl> containerMouseWarpControl;
+    std::shared_ptr<LayoutComboboxControl> containerGLSLControl;
     std::shared_ptr<LayoutComboboxControl> containerMountDriveControl;
     std::shared_ptr<LayoutTextInputControl> containerMountPathControl;
     std::shared_ptr<LayoutTextInputControl> containerLocationControl;

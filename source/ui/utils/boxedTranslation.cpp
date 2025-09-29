@@ -421,7 +421,11 @@ const char* c_getTranslation(Msg msg, bool useDefaultIfMissing) {
     case Msg::CONTAINER_VIEW_MOUSE_WARP_LABEL:
         return "Mouse Warp Override:";
     case Msg::CONTAINER_VIEW_MOUSE_WARP_HELP:
-        return "Enable:  (default) warp pointer when mouse exclusively acquired\nDisable : never warp the mouse pointer\nForce : always warp the pointer";
+        return "Enable:  (default) warp pointer when mouse exclusively acquired\nDisable : never warp the mouse pointer\nForce : always warp the pointer";    
+    case Msg::CONTAINER_VIEW_GLSL_LABEL:
+        return "Enable GLSL";
+    case Msg::CONTAINER_VIEW_GLSL_HELP:
+        return "When set to \"disabled\", this disables the use of GLSL for shaders.";
     case Msg::CONTAINER_VIEW_WINDOWS_VERION_LABEL:
         return "Windows Version:";
     case Msg::CONTAINER_VIEW_WINDOWS_VERION_HELP:

@@ -93,6 +93,15 @@ ContainersView::ContainersView(BString tab, BString app) : BaseView(B("Container
         this->currentContainerChanged = true;
     };
     containerMouseWarpControl->setWidth((int)GlobalSettings::scaleFloatUIAndFont(150));
+    
+    std::vector<ComboboxItem> glslOptions;
+    glslOptions.push_back(ComboboxItem(B("Enable"), B("enabled")));
+    glslOptions.push_back(ComboboxItem(B("Disable"), B("disabled")));
+    containerGLSLControl = section->addComboboxRow(Msg::CONTAINER_VIEW_GLSL_LABEL, Msg::CONTAINER_VIEW_GLSL_HELP, glslOptions);
+    containerGLSLControl->onChange = [this]() {
+        this->currentContainerChanged = true;
+    };
+    containerGLSLControl->setWidth((int)GlobalSettings::scaleFloatUIAndFont(150));
 
     std::vector<ComboboxItem> mountDrives;
     mountDrives.push_back(ComboboxItem(B(" ")));
@@ -599,6 +608,7 @@ bool ContainersView::saveChanges() {
             this->currentContainer->setVideoMemorySize(videoMemorySizeControl->getText());
 #endif
             this->currentContainer->setMouseWarpOverride(containerMouseWarpControl->getSelectionStringValue());
+            this->currentContainer->setGLSLOverride(containerGLSLControl->getSelectionStringValue());
             this->currentContainer->saveContainer();
             this->currentContainerChanged = false;            
         }
@@ -740,6 +750,7 @@ void ContainersView::setCurrentContainer(BoxedContainer* container) {
     videoMemorySizeControl->setRowHidden(!hasWine);
 #endif
     containerMouseWarpControl->setRowHidden(!hasWine);
+    containerGLSLControl->setRowHidden(!hasWine);
     componentsControl->setRowHidden(!hasWine);
     containerWindowsVersionControl->setRowHidden(!hasWine);
 
@@ -774,6 +785,7 @@ void ContainersView::setCurrentContainer(BoxedContainer* container) {
 #endif
 
         containerMouseWarpControl->setSelectionStringValue(container->getMouseWarpOverride());
+        containerGLSLControl->setSelectionStringValue(container->getGLSLOverride());
     }
     std::shared_ptr<FileSystemZip> fileSystem = currentContainer->getFileSystem().lock();
     if (fileSystem && fileSystem->tinyCorePackages.size()) {
